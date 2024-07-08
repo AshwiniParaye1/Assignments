@@ -4,36 +4,88 @@
  * Return a promise.all which return the time in milliseconds it takes to complete the entire operation.
  */
 
-// function wait1(t) {
-//   return new Promise((resolve) => {
+function wait1(t) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("resolved 1");
+    }, t * 1000);
+  });
+}
+
+function wait2(t) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("resolved 2");
+    }, t * 1000);
+  });
+}
+
+function wait3(t) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("resolved 3");
+    }, t * 1000);
+  });
+}
+
+function calculateTime(t1, t2, t3) {
+  const start = new Date().getTime();
+
+  return Promise.all([wait1(t1), wait2(t2), wait3(t3)]).then(() => {
+    const end = new Date().getTime();
+    return end - start;
+  });
+}
+
+// function calculateTime(t1, t2, t3) {
+//   const start = new Date().getTime();
+//   return Promise.all([wait1(t1), wait2(t2), wait3(t3)]).then(() => {
+//     const end = new Date().getTime();
+//     console.log(end - start);
+//     return end - start;
+//   });
+// }
+
+calculateTime(1, 2, 3);
+
+// function waitOneSecond(t) {
+//   return new Promise((resolve, reject) => {
 //     setTimeout(() => {
-//       resolve();
+//       resolve("First Promise");
 //     }, t * 1000);
 //   });
 // }
 
-// function wait2(t) {
-//   return new Promise((resolve) => {
+// function waitTwoSecond(t) {
+//   return new Promise((resolve, reject) => {
 //     setTimeout(() => {
-//       resolve();
-//     }, t * 2000);
+//       resolve("Second Promise");
+//     }, t * 1000);
 //   });
 // }
 
-// function wait3(t) {
-//   return new Promise((resolve) => {
+// function waitThreeSecond(t) {
+//   return new Promise((resolve, reject) => {
 //     setTimeout(() => {
-//       resolve();
-//     }, t * 3000);
+//       resolve("Third Promise");
+//     }, t * 1000);
 //   });
 // }
 
 // function calculateTime(t1, t2, t3) {
-//   const start = Date.now();
+//   const startTime = new Date().getTime();
 
-//   return Promise.all([wait1(t1), wait2(t2), wait3(t3)]).then(() => {
-//     const end = Date.now();
-//     return end - start;
+//   return Promise.all([
+//     waitOneSecond(t1),
+//     waitTwoSecond(t2),
+//     waitThreeSecond(t3),
+//   ]).then((result) => {
+//     const endTime = new Date().getTime();
+//     console.log(result);
+//     console.log(
+//       `took ${endTime - startTime} milliseconds to resolve all promises`
+//     );
+//     return endTime - startTime;
 //   });
 // }
 

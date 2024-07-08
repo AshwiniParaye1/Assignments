@@ -4,18 +4,13 @@
  * the function should return a promise just like before
  */
 
-// function sleep(milliseconds) {
-//   let ans = 0;
-//   return new Promise(function (res) {
-//     for (let i = 0; i < 10000000; i++) {
-//       ans = ans + i;
-//     }
-//     res("hey");
-//   });
-// }
+function sleep(milliseconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+}
 
-// sleep(2000).then((message) => {
-//   console.log(message);
-// });
-
+sleep(2000).then(function () {
+  console.log("heyy");
+});
 module.exports = sleep;
